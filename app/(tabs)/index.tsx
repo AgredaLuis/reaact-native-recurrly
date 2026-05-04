@@ -55,7 +55,7 @@ export default function App() {
             />
           </View>
 
-          <ListHeading title="All Subscription" />
+          <ListHeading title="All Subscriptions" />
         </>}
         data={HOME_SUBSCRIPTIONS}
         renderItem={({ item }) => <SubscriptionCard {...item} expanded={expandedSubscriptionId === item.id} onPress={() => setExpandedSubscriptionId(expandedSubscriptionId === item.id ? null : item.id)} />}
