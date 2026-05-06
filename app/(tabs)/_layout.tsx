@@ -7,9 +7,16 @@ import { useSafeAreaInsets } from "react-native-safe-area-context"
 
 const tabBar = components.tabBar
 
-const TabLayout = () => {
+import { useAuth } from '@clerk/expo'
+import { Redirect } from 'expo-router'
 
+const TabLayout = () => {
+    const { isSignedIn, isLoaded } = useAuth()
     const insets = useSafeAreaInsets()
+    
+    if (!isLoaded) return null;
+    if (!isSignedIn) return <Redirect href="/(auth)/sign-in" />;
+
     const TabIcon = ({ focused, icon }: TabIconProps) => {
         return (
             <View className="tabs-pill">
@@ -17,8 +24,6 @@ const TabLayout = () => {
             </View>
         )
     }
-
-
 
     return (
         <Tabs screenOptions={{
